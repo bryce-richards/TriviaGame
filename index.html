@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700,800,900|Fredoka+One|Goudy+Bookletter+1911">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/hover.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+<h1>
+    Trivia
+</h1>
+<div>
+    <h2>
+        Time Left:
+    </h2>
+    <div id="timeLeft">
+
+    </div>
+</div>
+<div>
+    <h2>Question
+        <span id="questionNumber">
+
+        </span>
+    </h2>
+    <div id="question">
+    </div>
+</div>
+
+<div class="answer hvr-fade" id="answer1">
+
+</div>
+<br>
+<div class="answer hvr-fade" id="answer2">
+
+</div>
+<br>
+<div class="answer hvr-fade" id="answer3">
+
+</div>
+<br>
+<div class="answer hvr-fade" id="answer4">
+
+</div>
+<br>
+<div>
+    <button type="button" class="btn btn-success" id="newGame" onclick="newGame()">
+        New Game
+    </button>
+
+    <h2>
+        Hints Left:
+        <span id="hintsLeft">
+
+        </span>
+    </h2>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
+<script src="assets/javascript/app.js"></script>
+</body>
+</html>
