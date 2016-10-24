@@ -1,3 +1,12 @@
 .answer {
     cursor: pointer;
 }
+
+main {
+    margin-top: 120px;
+    width:1100px;
+}
+
+#triviaHeader {
+    text-align: center;
+}
