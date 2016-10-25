@@ -7,6 +7,17 @@ var hintsBtn = $("#hintsBtn");
 var hintsSpan = $("#hintsLeft");
 var timeLeftDiv = $("#timeLeft");
 
+function useHint() {
+    // pick a random number from 1 to the number of wrong answers
+    var randomNumber = Math.floor(Math.random() * currentQuestion.wrongAnswers.length);
+    $(".wrong").each(function(i) {
+        if (randomNumber === i) {
+            $(this).css({"pointer-events": "none", "background-color": "red"});
+        }
+    });
+    hints--;
+    hintsBtn.attr("disabled", "disabled");
+}
 
 /* NEW GAME OBJECT */
 function newGame() {
@@ -112,6 +123,7 @@ function newGame() {
     // width of span
     var width = (1/totalQuestions) * 100;
     // questions and answers
+    var counter;
 
     // get total number of questions
     totalQuestions = questions.length;
@@ -158,7 +170,7 @@ function newGame() {
         // current time for the round
         var currentTime;
         // timeout counter
-        var counter;
+
         // time left
         var timeLeft;
 
@@ -182,7 +194,8 @@ function newGame() {
         // start timer
         startTimer();
         // get question object
-        currentQuestion = array[Math.floor(Math.random() * array.length)];
+        currentQuestion = questions[0];
+        // currentQuestion = questions[Math.floor(Math.random() * questions.length)];
         // add question to html page
         questionDiv.html("<p>" + currentQuestion.question + "</p>");
         // pick a random number from 1-4 to add correct answer to
@@ -275,10 +288,10 @@ function newGame() {
                 $(this).css("pointer-events", "none");
             });
             // remove question object from array
-            array.splice(array.indexOf(currentQuestion), 1);
-            setTimeout(function() {
-                newQuestion(questions);
-            }, 2000);
+            questions.splice(questions.indexOf(currentQuestion), 1);
+            //setTimeout(function() {
+                newQuestion();
+            //}, 2000);
         });
 
 

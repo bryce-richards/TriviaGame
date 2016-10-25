@@ -10,3 +10,13 @@ main {
 .centered {
     text-align: center;
 }
+
+#navbar-main {
+    float: right;
+}
+
+.list-group-item {
+    margin: 10px;
+    line-height: 24px;
+    font-size: 24px;
+}
