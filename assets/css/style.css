@@ -1,10 +1,80 @@
+/* FONTS */
+@font-face {
+    font-family: "Aniron";
+    src: url("../fonts/anirm___.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Aniron";
+    font-weight: bold;
+    src: url("../fonts/anirb___.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Ringbearer";
+    src: url("../fonts/ringm___.ttf") format("truetype");
+}
+
+.aniron {
+    font-family: "Aniron";
+}
+
+.ringbearer {
+    font-family: "Ringbearer";
+}
+
+.alegreya {
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+body {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 1280px 800px;
+    min-height: 800px;
+}
+
 main {
+    margin-top: 50px;
+}
+
+#openingPage {
+    position: fixed;
+    top: 100px;
+}
+
+#questionsDiv {
     margin-top: 20px;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+#timeLeft {
+    font-size: 24px;
+}
+
+#hintsLeft {
+    font-size: 24px;
+}
+
+#question {
+    font-size: 24px;
+    padding: 5px 10px;
 }
 
 .answer {
     cursor: pointer;
     width: 100%;
+    font-size: 18px;
+    padding: 5px 10px;
 }
 
 .centered {
@@ -17,8 +87,63 @@ main {
     margin-top: 5px;
 }
 
-.list-group-item {
-    margin: 10px;
-    line-height: 24px;
+#questionNumber {
+    margin: 0;
+}
+
+.alert {
+    margin: 0;
+}
+
+.well {
+    margin: 0;
+}
+
+#hintsDiv {
+    margin-bottom: 0;
+}
+
+.progress {
+    background-color: #3E444C;
+    height: 30px;
+    margin: 10px auto;
+}
+
+#statsTable {
+    margin-top: 20px;
+}
+.boxshadow {
+    box-shadow: 5px 5px 5px #000000;
+}
+
+.badge {
     font-size: 24px;
+    padding: 5px 20px;
+}
+
+.correctGuess {
+    border: solid 1px #62C462;
+}
+
+.wrongGuess {
+    border: solid 1px #EE5F5B;
+}
+
+.wrongAnswer {
+    background-color: #EE5F5B;
+    color: white;
+}
+
+.correctAnswer {
+    background-color: #62C462;
+    color: white;
+}
+
+#lastpanel {
+    margin-bottom: 0;
+}
+
+.hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+    background-color: #3E444C;
+    color: white;
 }

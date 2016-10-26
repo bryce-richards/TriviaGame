@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Trivia</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700,800,900|Fredoka+One|Goudy+Bookletter+1911">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Cinzel:400,700|Fredoka+One|Playfair+Display+SC|Rakkas|Yatra+One" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/custom.min.css">
-    <link rel="stylesheet" href="assets/css/hoverCustom.css">
+    <link rel="stylesheet" href="assets/css/hover.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 <body>
@@ -18,39 +19,57 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <div class="navbar-brand" id="triviaHeader">
-                Trivia
+            <div class="navbar-brand ringbearer" id="triviaHeader">
+                Lord of the Rings
             </div>
         </div>
         <div id="navbar-main">
-            <button type="button" class="btn btn-success" id="startGame" onclick="startGame()">New Game</button>
+            <button type="button" class="btn btn-success alegreya" id="startGame" onclick="startGame()">
+                New Game
+            </button>
         </div>
     </div>
 </nav>
+<!-- OPENING PAGE -->
+<div class="container" id="openingPage">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="row">
+                <h1 class="ringbearer centered">Lord of the Rings</h1>
+                <h2 class="aniron centered">Trivia</h2>
+            </div>
+        </div>
+    </div>
+</div>
 <!--MAIN CONTAINER-->
-<main class="container">
+<main class="container" style="display: none">
     <div class="row">
         <!--SIDEBAR-->
         <div class="col-lg-3 col-md-3 col-sm-4" id="sidebar">
             <aside class="well row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <!-- TIME LEFT -->
-                    <div class="row panel panel-warning" id="timeDiv">
+                    <div class="panel panel-warning" id="timeDiv">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Time Left</h3>
+                            <h3 class="panel-title centered ringbearer">Time Left&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-hourglass-start"
+                                                                                      aria-hidden="true"></i></h3>
                         </div>
-                        <div class="panel-body" id="timeLeft">
+                        <div class="panel-body centered alegreya" id="timeLeft">
                         </div>
                     </div>
                     <!-- END OF TIME LEFT -->
                     <!-- HINTS SECTION -->
-                    <div class="row panel panel-info">
+                    <div class="panel panel-info" id="hintsDiv">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Hints Left: <span id="hintsLeft"></span></h3>
+                            <h3 class="panel-title centered ringbearer">Hints&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-search"
+                                                                                  aria-hidden="true"></i></h3>
                         </div>
                         <div class="panel-body">
                             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                <a href="#" class="btn btn-default btn-lg btn-block" id="hintsBtn" onclick="useHint">Hint</a>
+                                <button class="boxshadow btn btn-info btn-block alegreya" id="hintsBtn"
+                                   onclick="useHint()">
+                                    <span id="hintsLeft"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -66,47 +85,49 @@
                 <!-- QUESTION NUMBER -->
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="alert alert-danger">
-                        <h4 class="centered" id="questionNumber"></h4>
+                        <h4 class="centered alegreya" id="questionNumber"></h4>
                     </div>
                 </div>
                 <!-- STATUS BAR -->
                 <div class="col-lg-10 col-md-10 col-sm-10">
-                    <div class="progress" id="progressbar">
+                    <div class="progress boxshadow" id="progressbar">
                     </div>
                 </div>
             </div>
             <!-- END OF PROGRESS BAR AND QUESTION NUMBER-->
             <!-- QUESTION AND ANSWERS -->
-            <article class="row" id="questionsDiv" style="display: none">
+            <article class="well row" id="questionsDiv">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <!-- QUESTION AND ANSWERS PANEL -->
-                    <div class="row well">
+                    <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <!-- QUESTION -->
                             <div class="row">
-                                <div class="alert alert-success" id="question">
+                                <div class="panel panel-default">
+                                    <div class="panel-body alert alert-info ringbearer centered" id="question">
+                                    </div>
                                 </div>
                             </div>
                             <!-- ANSWERS -->
                             <div class="row">
                                 <!-- ANSWER 1 -->
                                 <div class="panel panel-default">
-                                    <div class="panel-body hvr-fade answer wrong" id="answer1">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer1">
                                     </div>
                                 </div>
                                 <!-- ANSWER 2 -->
                                 <div class="panel panel-default">
-                                    <div class="panel-body hvr-fade answer wrong" id="answer2">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer2">
                                     </div>
                                 </div>
                                 <!-- ANSWER 3 -->
                                 <div class="panel panel-default">
-                                    <div class="panel-body hvr-fade answer wrong" id="answer3">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer3">
                                     </div>
                                 </div>
                                 <!-- ANSWER 4 -->
-                                <div class="panel panel-default">
-                                    <div class="panel-body hvr-fade answer wrong" id="answer4">
+                                <div class="panel panel-warning">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer4">
                                     </div>
                                 </div>
                             </div>
@@ -118,39 +139,44 @@
             </article>
             <!-- END OF QUESTION AND ANSWERS -->
             <!--STATS TABLE-->
-            <div class="row" id="statsTable" style="display: none">
+            <div class="well row" id="statsTable" style="display: none">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <ul class="list-group row">
+                    <div class="row">
+                        <!-- CORRECT ANSWERS -->
                         <div class="col-lg-4 col-md-4 col-sm-4">
-                            <!-- CORRECT ANSWERS -->
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <li class="list-group-item">
-                                        <span class="badge" id="totalCorrect"></span>
-                                        Correct Answers
-                                    </li>
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title centered ringbearer">Total Correct</h3>
                                 </div>
-                            </div>
-                            <!-- WRONG ANSWERS -->
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <li class="list-group-item">
-                                        <span class="badge" id="totalWrong"></span>
-                                        Wrong Answers
-                                    </li>
-                                </div>
-                            </div>
-                            <!-- UNANSWERED QUESTIONS -->
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <li class="list-group-item">
-                                        <span class="badge" id="unanswered"></span>
-                                        Unanswered Questions
-                                    </li>
+                                <div class="panel-body centered">
+                                    <span class="badge" id="totalCorrect"></span>
                                 </div>
                             </div>
                         </div>
-                    </ul>
+                        <!-- WRONG ANSWERS -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title centered rinbearer">Total Wrong</h3>
+                                </div>
+                                <div class="panel-body centered">
+                                    <span class="badge" id="totalWrong"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- UNANSWERED QUESTIONS -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title centered ringbearer">Unanswered</h3>
+                                </div>
+                                <div class="panel-body centered">
+                                    <span class="badge" id="unanswered"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- END OF STATS TABLE -->
@@ -160,11 +186,9 @@
     <!-- END OF SIDEBAR AND MAIN AREA -->
 </main>
 <!-- END OF MAIN CONTAINER -->
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<!--<script src="assets/javascript/custom.js"></script>-->
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!--<script src="https://use.fontawesome
-.com/c09fe9cceb.js"></script>-->
+<script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
+<script src="assets/javascript/bootstrap.min.js"></script>
+<script src="assets/javascript/custom.js"></script>
 <script src="assets/javascript/app4.js"></script>
 </body>
 </html>
