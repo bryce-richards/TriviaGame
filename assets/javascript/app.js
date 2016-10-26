@@ -84,8 +84,6 @@ var lotrQuestions = [{
 }];
 var currentGame;
 var currentQuestion;
-var counter;
-var timeLeft;
 
 function Game(array) {
     // assign copy of array
@@ -104,6 +102,10 @@ function Game(array) {
     this.progressWidth = (1 / this.totalQuestions) * 100;
     // set question number
     this.questionNumber = 0;
+    // set time per question
+    this.timeLeft = 10;
+    // set counter variable;
+    this.counter;
 }
 
 function Question(array) {
@@ -131,13 +133,18 @@ function startGame() {
     resetDisplay();
     // create new question
     newQuestion();
+
 }
 
 function newQuestion() {
     // create the question object and then assign to currentQuestion
     currentQuestion = new Question(currentGame.questions);
+    // reset answer classes
+    $(".answer").removeClass("correct").addClass("wrong");
     // make answers clickable
-    $(".answer").removeClass("correct").addClass("wrong").css("pointer-events", "auto");
+    setTimeout(function() {
+        $(".answer").css("pointer-events", "auto");
+    }, 500);
     // add number of hints to page
     $("#hintsLeft").text(currentGame.hints);
     // increase questionNumber of game
@@ -159,29 +166,29 @@ function newQuestion() {
         $("#hintsBtn").removeClass("disabled");
     }
     // set time left
-    timeLeft = 10;
+    currentGame.timeLeft = 10;
     // add time to page
     $("#timeDiv").removeClass("panel-danger").addClass("panel-primary").find("h3").text("Time Left").animate({opacity: '1'}, 500);
-    $("#timeLeft").text(timeLeft).animate({opacity: '1'}, 500);
+    $("#timeLeft").text(currentGame.timeLeft).animate({opacity: '1'}, 500);
     // start timer
     setTimeout(startTimer, 500);
 }
 
 function startTimer() {
-    counter = setInterval(timeDown, 1000);
+    this.counter = setInterval(timeDown, 1000);
 }
 
 function timeDown() {
     // reduce time left by one
-    timeLeft--;
+    currentGame.timeLeft--;
     // show the number of seconds left
-    $("#timeLeft").text(timeLeft);
+    $("#timeLeft").text(currentGame.timeLeft);
     // change panel color
-    if (timeLeft === 5) {
+    if (currentGame.timeLeft === 5) {
         $("#timeDiv").removeClass("panel-primary").addClass("panel-danger");
     }
     // if time runs out, alert
-    if (timeLeft === 0) {
+    if (currentGame.timeLeft === 0) {
         // stop timer
         timesUp();
         $("#timeDiv").find("h3").text("Time's Up!");
@@ -202,7 +209,7 @@ $(".answer").click(function() {
 
 function timesUp() {
     // clear counter interval
-    clearInterval(counter);
+    clearInterval(this.counter);
     // disable hints
     $("#hintsBtn").addClass("disabled");
     // make answers unclickable
