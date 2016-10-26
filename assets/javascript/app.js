@@ -182,13 +182,14 @@ function timeDown() {
     }
     // if time runs out, alert
     if (timeLeft === 0) {
+        // stop timer
+        timesUp();
         $("#timeDiv").find("h3").text("Time's Up!");
         $("#timeLeft").html("<i class='fa fa-hourglass-end' aria-hidden='true'></i>");
         setTimeout(function() {
             $("#timeDiv").find("h3").animate({opacity: '0'}, 500);
             $("#timeLeft").animate({opacity: '0'}, 500);
         }, 2500);
-        timesUp();
         highlightCorrect();
         currentGame.unanswered++;
         progressBar("unanswered");
@@ -270,22 +271,23 @@ function progressBar(status) {
         timesUp();
         setTimeout(function() {
             $(".answer").parent().removeClass("wrongAnswer", 100);
-            $("questionsDiv").fadeOut(1000);
+            $("#questionsDiv").fadeOut(1000);
             gameOver(currentGame);
-        }, 1000);
+        }, 3000);
     }
 }
 
 // game over function
 function gameOver(game) {
     // fade out questions
-    $("#questionsDiv").fadeOut(1000);
+    $("#questionsDiv").fadeOut(500);
+    $("#timeDiv").removeClass("panel-danger").addClass("panel-warning").find("h3").text("Time Left").animate({opacity: '1'}, 500);
     $("#totalCorrect").text(currentGame.correctGuesses);
     $("#totalWrong").text(currentGame.wrongGuesses);
     $("#unanswered").text(currentGame.unanswered);
     // fade in stats
     setTimeout(function() {
-        $("#statsTable").fadeIn(1000);
+        $("#statsTable").fadeIn(500);
     }, 1000);
     $("#startGame").fadeIn(2000);
 }
