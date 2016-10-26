@@ -26,7 +26,7 @@ var lotrQuestions = [{
         "1999"
     ]
 }, {
-    question: "Which character's motto is 'Do Not Be Hasty?'",
+    question: "Which character's motto is 'Do Not Be Hasty'?",
     correctAnswer: "Treebeard",
     wrongAnswers: [
         "Gandalf",
