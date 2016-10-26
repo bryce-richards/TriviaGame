@@ -1,18 +1,20 @@
-.answer {
-    cursor: pointer;
+main {
+    margin-top: 20px;
 }
 
-main {
-    margin-top: 120px;
-    width:1100px;
+.answer {
+    cursor: pointer;
+    width: 100%;
 }
 
 .centered {
     text-align: center;
+    width: 100%;
 }
 
 #navbar-main {
     float: right;
+    margin-top: 5px;
 }
 
 .list-group-item {

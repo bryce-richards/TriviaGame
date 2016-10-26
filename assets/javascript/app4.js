@@ -26,7 +26,7 @@ var lotrQuestions = [{
         "1999"
     ]
 }, {
-    question: "What is the name of the ent who helps Merry and Pippin>",
+    question: "What is the name of the ent who helps Merry and Pippin",
     correctAnswer: "Treebeard",
     wrongAnswers: [
         "Quickbeam",
@@ -82,7 +82,6 @@ var lotrQuestions = [{
         "Answer3"
     ]
 }];
-var questionNumber;
 var currentGame;
 var currentQuestion;
 var counter;
@@ -103,9 +102,11 @@ function Game(theme) {
     // reset unaswered
     this.unanswered = 0;
     // get total number of questions
-    this.totalQuestions = questions.length;
-// set progress bar segment width
+    this.totalQuestions = this.questions.length;
+    // set progress bar segment width
     this.progressWidth = (1 / this.totalQuestions) * 100;
+    // set question number
+    this.questionNumber = 0;
 }
 
 function Question(array) {
@@ -120,37 +121,37 @@ function startGame() {
     $("#startGame").attr("disabled", "disabled");
     // create new Game object by theme
     currentGame = new Game("lotr");
-    newQuestion();
     $("#statsTable").hide();
-    $("#questionsDiv").fadeIn(1000);
+    $("#questionsDiv").fadeIn();
+    newQuestion();
 }
 
 function newQuestion() {
     // create the question object and then assign to currentQuestion
     currentQuestion = new Question(currentGame.questions);
+    // make answers clickable
+    $(".answer").each(function(i) {
+        $(this).removeClass("correct").addClass("hvr-fade wrong").css("pointer-events", "auto");
+    });
+    // add number of hints to page
+    $("#hintsLeft").text(currentGame.hints);
     // increase questionNumber of game
     currentGame.questionNumber++;
     // add questionNumber to page
-    $("questionNumber").text(currentGame.questionNumber);
+    $("#questionNumber").text(currentGame.questionNumber + " / " + currentGame.totalQuestions);
     // add question to page
     $("#question").text(currentQuestion.question);
     // pick random location for correct answer
     var correctLocation = Math.floor(Math.random() * currentQuestion.wrongAnswers.length) + 1;
     // add answers to page
-    $("#answer" + correctLocation).removeClass("wrong").addClass("correct").find("h3").text(currentQuestion.correctAnswer);
+    $("#answer" + correctLocation).removeClass("wrong").addClass("correct").text(currentQuestion.correctAnswer);
     $(".wrong").each(function(i) {
-        $(this).find("h3").text(currentQuestion.wrongAnswers[i]);
+        $(this).text(currentQuestion.wrongAnswers[i]);
     });
     // enable hints button
     if (currentGame.hints > 0) {
         $("#hintsBtn").removeAttr("disabled");
     }
-    // make answers clickable
-    $(".answer").each(function(i) {
-        $(this).removeClass("correct").addClass("wrong").css("pointer-events", "auto");
-    });
-    // remove question object from questions array
-    currentQuestion.splice(currentQuestion.indexOf(currentQuestion.index), 1);
     // set time left
     timeLeft = 15;
     // start timer
@@ -159,9 +160,8 @@ function newQuestion() {
 
 $(".answer").click(function() {
     timesUp();
-    userGuess = $(this);
-    // make each answer unclickable
-    checkAnswer(userGuess, currentQuestion);
+    userGuess = $(this)
+    checkAnswer(userGuess);
 });
 
 
@@ -174,36 +174,51 @@ function useHint() {
         }
     });
     currentGame.hints--;
-
     // update hints button
     $("#hintsBtn").attr("disabled", "disabled");
 }
 
 // update progress bar div based on answer validation
 function progressBar(status) {
-    if (status) {
+    if (status === "correct") {
         $("#progressbar").append("<div class='progress-bar progress-bar-success' style='width: " + currentGame.progressWidth + "%'></div>")
     }
-    else if (!status) {
+    if (status === "wrong") {
         $("#progressbar").append("<div class='progress-bar progress-bar-danger' style='width: " + currentGame.progressWidth + "%'></div>")
-    } else {
+    }
+    if (status === "unanswered") {
         $("#progressbar").append("<div class='progress-bar progress-bar-warning' style='width: " + currentGame.progressWidth + "%'></div>")
     }
+    // make answers unclickable
+    $(".answer").each(function(i) {
+        $(this).removeClass("correct").addClass("wrong").css("pointer-events", "none");
+    });
+    // remove question object from questions array
+    currentGame.questions.splice(currentGame.questions.indexOf(currentQuestion.index), 1);
+    // if questions remain, start new question after 1 second
+    if (currentGame.questions.length > 0) {
+        setTimeout(newQuestion, 200);
+    }
+    if (currentGame.questions.length === 0 ) {
+        gameOver(currentGame);
+    }
+
 }
 
 function startTimer() {
-    timeLeftDiv.removeClass("text-danger").addClass("text-warning");
+    $("#timeDiv").removeClass("panel-danger").addClass("panel-primary");
+    $("#timeLeft").text(timeLeft + " seconds");
     counter = setInterval(timeDown, 1000);
 }
 
 function timeDown() {
-    // show the number of seconds left
-    timeLeftDiv.text(timeLeft + " seconds");
     // reduce time left by one
     timeLeft--;
+    // show the number of seconds left
+    $("#timeLeft").text(timeLeft + " seconds");
     // update HTML
     if (timeLeft === 5) {
-        timeLeftDiv.removeClass("text-warning").addClass("text-danger");
+        $("#timeDiv").removeClass("panel-primary").addClass("panel-danger");
     }
     if (timeLeft === 0) {
         timesUp();
@@ -215,24 +230,6 @@ function timeDown() {
 function timesUp() {
     // clear counter interval
     clearInterval(counter);
-
-    // make answers unclickable
-    $(".answer").each(function(i) {
-        $(this).removeClass("correct").addClass("wrong").css("pointer-events", "none");
-    });
-
-    // if questions remain, start new question after 1 second
-    if (currentGame.questions.length > 0) {
-        setTimeout(function() {
-            newQuestion();
-        }, 1000)
-    }
-
-    if (currentGame.questions.length === 0 ) {
-        setTimeout(function() {
-            gameOver(currentGame);
-        }, 1000)
-    }
 }
 
 function gameOver(game) {
@@ -244,50 +241,33 @@ function gameOver(game) {
 }
 
 function highlightCorrect() {
-    $(".correct").addClass("hvr-ripple-out");
-    $(".correct").trigger("mouseenter");
+    $(".correct").parent().removeClass("panel-default").addClass("panel-success");
     setTimeout(function() {
-        $(".correct").trigger("mouseleave");
-        $(".correct").removeClass("hvr-ripple-out");
+        $(".correct").parent().removeClass("panel-success").addClass("panel-default");
     }, 1000);
 }
 
 function highlightWrong(answer) {
-    answer.removeClass("hvr-fade").addClass("hvr-border-fade");
-    answer.trigger("mouseenter");
+    answer.parent().removeClass("panel-default").addClass("panel-danger");
     setTimeout(function() {
-        answer.trigger("mouseleave");
-        answer.removeClass("hvr-border-fade").addClass("hvr-fade");
+        answer.parent().removeClass("panel-danger").addClass("panel-default");
     }, 1000);
 }
 
 function checkAnswer(answer) {
     // stop timer
     timesUp();
-
-    // make answers unclickable
-    $(".answer").each(function(i) {
-        $(this).removeClass("correct").addClass("wrong").css("pointer-events", "none");
-    });
-
-    // set boolean to false
-    var guessBool = false;
     // if answer is correct
     if (answer.hasClass("correct")) {
-        guessBool = true;
-        gameObject.correctGuesses++;
-        // else, highlight correct answer
+        currentGame.correctGuesses++;
+        setTimeout(progressBar("correct"), 1000);
     } else {
-        // border fade on incorrect selection
         highlightWrong(answer);
-        // ripple out effect on correct answer
         highlightCorrect();
+        currentGame.wrongGuesses++;
+        setTimeout(progressBar("wrong"), 1000);
     }
-    // update progress bar
-    progressBar(guessBool);
-
-    // remove question object from array
-    setTimeout(function() {
-        newQuestion();
-    }, 1000);
 }
+
+// TODO after game is over, enable New Game button
+// TODO fix timeout functions
