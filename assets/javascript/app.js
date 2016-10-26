@@ -163,7 +163,7 @@ function newQuestion() {
     $(".answer").animate({opacity: '1'}, 500);
     // enable hints button
     if (currentGame.hints > 0) {
-        $("#hintsBtn").removeClass("disabled");
+        $("#hintsBtn").removeAttr("disabled").removeClass("disabled");
     }
     // set time left
     currentGame.timeLeft = 10;
@@ -211,7 +211,7 @@ function timesUp() {
     // clear counter interval
     clearInterval(this.counter);
     // disable hints
-    $("#hintsBtn").addClass("disabled");
+    $("#hintsBtn").attr("disabled", "disabled").addClass("disabled");
     // make answers unclickable
     $(".answer").css("pointer-events", "none");
 }
@@ -245,7 +245,7 @@ function useHint() {
     currentGame.hints--;
     // update hints button
     $("#hintsLeft").text(currentGame.hints);
-    $("#hintsBtn").addClass("disabled");
+    $("#hintsBtn").attr("disabled", "disabled").addClass("disabled");
 }
 
 // update progress bar div based on answer validation
