@@ -4,201 +4,191 @@
 <head>
     <meta charset="UTF-8">
     <title>Trivia</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700,800,900|Fredoka+One|Goudy+Bookletter+1911">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Cinzel:400,700|Fredoka+One|Playfair+Display+SC|Rakkas|Yatra+One" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/custom.min.css">
     <link rel="stylesheet" href="assets/css/hover.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
+<!--HEADER-->
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a href="../" class="navbar-brand">Bootswatch</a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <div class="navbar-brand ringbearer" id="triviaHeader">
+                Lord of the Rings
+            </div>
+        </div>
+        <div id="navbar-main">
+            <button type="button" class="btn btn-success alegreya" id="startGame" onclick="startGame()">
+                New Game
             </button>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="themes">
-                        <li><a href="../default/">Default</a></li>
-                        <li class="divider"></li>
-                        <li><a href="../cerulean/">Cerulean</a></li>
-                        <li><a href="../cosmo/">Cosmo</a></li>
-                        <li><a href="../cyborg/">Cyborg</a></li>
-                        <li><a href="../darkly/">Darkly</a></li>
-                        <li><a href="../flatly/">Flatly</a></li>
-                        <li><a href="../journal/">Journal</a></li>
-                        <li><a href="../lumen/">Lumen</a></li>
-                        <li><a href="../paper/">Paper</a></li>
-                        <li><a href="../readable/">Readable</a></li>
-                        <li><a href="../sandstone/">Sandstone</a></li>
-                        <li><a href="../simplex/">Simplex</a></li>
-                        <li><a href="../slate/">Slate</a></li>
-                        <li><a href="../spacelab/">Spacelab</a></li>
-                        <li><a href="../superhero/">Superhero</a></li>
-                        <li><a href="../united/">United</a></li>
-                        <li><a href="../yeti/">Yeti</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="../help/">Help</a>
-                </li>
-                <li>
-                    <a href="http://news.bootswatch.com">Blog</a>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Cyborg <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="download">
-                        <li><a href="http://jsfiddle.net/bootswatch/q0gdqa1q/">Open Sandbox</a></li>
-                        <li class="divider"></li>
-                        <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
-                        <li><a href="./bootstrap.css">bootstrap.css</a></li>
-                        <li class="divider"></li>
-                        <li><a href="./variables.less">variables.less</a></li>
-                        <li><a href="./bootswatch.less">bootswatch.less</a></li>
-                        <li class="divider"></li>
-                        <li><a href="./_variables.scss">_variables.scss</a></li>
-                        <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
-            </ul>
-
+    </div>
+</nav>
+<!-- OPENING PAGE -->
+<div class="container" id="openingPage">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="row">
+                <h1 class="ringbearer centered">Lord of the Rings</h1>
+                <h2 class="aniron centered">Trivia</h2>
+            </div>
         </div>
     </div>
 </div>
-
-
-<div class="container">
-
-    <div class="page-header" id="banner">
-        <div class="row">
-            <div class="col-lg-8 col-md-7 col-sm-6">
-                <h1>Cyborg</h1>
-                <p class="lead">Jet black and electric blue</p>
-            </div>
-            <div class="col-lg-4 col-md-5 col-sm-6">
-                <div class="sponsor">
-                    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=bootswatchcom" id="_carbonads_js"></script>
+<!--MAIN CONTAINER-->
+<main class="container" style="display: none">
+    <div class="row">
+        <!--SIDEBAR-->
+        <div class="col-lg-3 col-md-3 col-sm-3" id="sidebar">
+            <aside class="well row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!-- TIME LEFT -->
+                    <div class="panel panel-warning" id="timeDiv">
+                        <div class="panel-heading">
+                            <h3 class="panel-title centered ringbearer">Time Left</h3>
+                        </div>
+                        <div class="panel-body centered alegreya" id="timeLeft">
+                        </div>
+                    </div>
+                    <!-- END OF TIME LEFT -->
+                    <!-- HINTS SECTION -->
+                    <div class="panel panel-info" id="hintsDiv">
+                        <div class="panel-heading">
+                            <h3 class="panel-title centered ringbearer">Hint&nbsp;&nbsp;&nbsp;<i class="fa fa-search"
+                                                                                  aria-hidden="true"></i></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                                <button class="boxshadow btn btn-info btn-block alegreya" id="hintsBtn"
+                                   onclick="useHint()">
+                                    <span id="hintsLeft"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF HINTS SECTION -->
+                </div>
+            </aside>
+        </div>
+        <!-- END OF SIDEBAR -->
+        <!-- MAIN AREA -->
+        <section class="col-lg-9 col-md-9 col-sm-9">
+            <!-- PROGRESS BAR AND QUESTION NUMBER -->
+            <div class="well row">
+                <!-- QUESTION NUMBER -->
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="alert alert-danger">
+                        <h4 class="centered alegreya" id="questionNumber"></h4>
+                    </div>
+                </div>
+                <!-- STATUS BAR -->
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div class="progress boxshadow" id="progressbar">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-4">
-                <div class="list-group table-of-contents">
-                    <a class="list-group-item" href="#navbar">Navbar</a>
-                    <a class="list-group-item" href="#buttons">Buttons</a>
-                    <a class="list-group-item" href="#typography">Typography</a>
-                    <a class="list-group-item" href="#tables">Tables</a>
-                    <a class="list-group-item" href="#forms">Forms</a>
-                    <a class="list-group-item" href="#navs">Navs</a>
-                    <a class="list-group-item" href="#indicators">Indicators</a>
-                    <a class="list-group-item" href="#progress-bars">Progress bars</a>
-                    <a class="list-group-item" href="#containers">Containers</a>
-                    <a class="list-group-item" href="#dialogs">Dialogs</a>
+            <!-- END OF PROGRESS BAR AND QUESTION NUMBER-->
+            <!-- QUESTION AND ANSWERS -->
+            <article class="well row" id="questionsDiv">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!-- QUESTION AND ANSWERS PANEL -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <!-- QUESTION -->
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-body alert alert-info ringbearer centered" id="question">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ANSWERS -->
+                            <div class="row">
+                                <!-- ANSWER 1 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer1">
+                                    </div>
+                                </div>
+                                <!-- ANSWER 2 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer2">
+                                    </div>
+                                </div>
+                                <!-- ANSWER 3 -->
+                                <div class="panel panel-default">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer3">
+                                    </div>
+                                </div>
+                                <!-- ANSWER 4 -->
+                                <div class="panel panel-warning">
+                                    <div class="panel-body hvr-fade answer wrong alegreya centered" id="answer4">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END OF ANSWERS -->
+                        </div>
+                    </div>
+                    <!-- END OF QUESTION AND ANSWERS PANEL -->
+                </div>
+            </article>
+            <!-- END OF QUESTION AND ANSWERS -->
+            <!--STATS TABLE-->
+            <div class="well row" id="statsTable" style="display: none">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row">
+                        <!-- CORRECT ANSWERS -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title centered ringbearer">Total Correct</h3>
+                                </div>
+                                <div class="panel-body centered">
+                                    <span class="badge" id="totalCorrect"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- WRONG ANSWERS -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title centered ringbearer">Total Wrong</h3>
+                                </div>
+                                <div class="panel-body centered">
+                                    <span class="badge" id="totalWrong"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- UNANSWERED QUESTIONS -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title centered ringbearer">Unanswered</h3>
+                                </div>
+                                <div class="panel-body centered">
+                                    <span class="badge" id="unanswered"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <!-- END OF STATS TABLE -->
+        </section>
+        <!-- END OF MAIN AREA -->
     </div>
-
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-
-                <ul class="list-unstyled">
-                    <li class="pull-right"><a href="#top">Back to top</a></li>
-                    <li><a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;">Blog</a></li>
-                    <li><a href="http://feeds.feedburner.com/bootswatch">RSS</a></li>
-                    <li><a href="https://twitter.com/bootswatch">Twitter</a></li>
-                    <li><a href="https://github.com/thomaspark/bootswatch/">GitHub</a></li>
-                    <li><a href="../help/#api">API</a></li>
-                    <li><a href="../help/#support">Support</a></li>
-                </ul>
-                <p>Made by <a href="http://thomaspark.co" rel="nofollow">Thomas Park</a>. Contact him at <a href="mailto:thomas@bootswatch.com">thomas@bootswatch.com</a>.</p>
-                <p>Code released under the <a href="https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE">MIT License</a>.</p>
-                <p>Based on <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Icons from <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts from <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
-
-            </div>
-        </div>
-
-    </footer>
-
-
-</div>
-
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!-- END OF SIDEBAR AND MAIN AREA -->
+</main>
+<!-- END OF MAIN CONTAINER -->
 <script src="assets/javascript/bootstrap.min.js"></script>
 <script src="assets/javascript/custom.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
-<script src="assets/javascript/app.js"></script>
-
-<body>
-<h1>
-    Trivia
-</h1>
-<div>
-    <h2>
-        Time Left:
-    </h2>
-    <div id="timeLeft">
-
-    </div>
-</div>
-<div>
-    <h2>Question
-        <span id="questionNumber">
-
-        </span>
-    </h2>
-    <div id="question">
-    </div>
-</div>
-
-<div class="answer hvr-fade" id="answer1">
-
-</div>
-<br>
-<div class="answer hvr-fade" id="answer2">
-
-</div>
-<br>
-<div class="answer hvr-fade" id="answer3">
-
-</div>
-<br>
-<div class="answer hvr-fade" id="answer4">
-
-</div>
-<br>
-<div>
-    <button type="button" class="btn btn-success" id="newGame" onclick="newGame()">
-        New Game
-    </button>
-
-    <h2>
-        Hints Left:
-        <span id="hintsLeft">
-
-        </span>
-    </h2>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
-<script src="assets/javascript/app.js"></script>
+<script src="assets/javascript/app4.js"></script>
 </body>
 </html>
