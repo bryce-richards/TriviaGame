@@ -34,6 +34,7 @@ body {
     background-position: center;
     background-size: 1280px 800px;
     min-height: 800px;
+    min-width: 1280px;
 }
 
 main {
@@ -41,6 +42,7 @@ main {
 }
 
 #openingPage {
+    width: 100%;
     position: fixed;
     top: 100px;
 }
@@ -58,7 +60,8 @@ h3 {
 }
 
 #timeLeft {
-    font-size: 24px;
+    font-size: 36px;
+    padding: 5px;
 }
 
 #hintsLeft {
