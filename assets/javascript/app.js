@@ -282,6 +282,7 @@ function gameOver(game) {
     // fade out questions
     $("#questionsDiv").fadeOut(500);
     $("#timeDiv").removeClass("panel-danger").addClass("panel-warning").find("h3").text("Time Left").animate({opacity: '1'}, 500);
+    $("#timeLeft").animate({opacity: '0'}, 500);
     $("#totalCorrect").text(currentGame.correctGuesses);
     $("#totalWrong").text(currentGame.wrongGuesses);
     $("#unanswered").text(currentGame.unanswered);
