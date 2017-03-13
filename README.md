@@ -16,10 +16,12 @@ See if you can get all the answers correct before time runs out!
 
 * [JavaScript] (https://www.javascript.com/)
 * [jQuery] (https://jquery.com/)
+* [Twitter Bootstrap] (http://getbootstrap.com/)
 
 ## Acknowledgments
 
 Thanks to everyone over at [FontAwesome] (http://fontawesome.io/)
+Bootstrap theme by [Bootswatch] (http://bootswatch.com/)
 
 ## Author
 
