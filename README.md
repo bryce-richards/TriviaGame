@@ -8,20 +8,20 @@ See if you can get all the answers correct before time runs out!
 
 ## Demo
 
-[Link] (https://lotr-trivia.herokuapp.com/)
+[Link](https://lotr-trivia.herokuapp.com/)
 
-![Screenshot] (https://github.com/bryce-richards/TriviaGame/blob/master/LOTR-trivia.png)
+![Screenshot](https://github.com/bryce-richards/TriviaGame/blob/master/LOTR-trivia.png)
 
 ## Technology
 
-* [JavaScript] (https://www.javascript.com/)
-* [jQuery] (https://jquery.com/)
-* [Twitter Bootstrap] (http://getbootstrap.com/)
+* [JavaScript](https://www.javascript.com/)
+* [jQuery](https://jquery.com/)
+* [Twitter Bootstrap](http://getbootstrap.com/)
 
 ## Acknowledgments
 
-Thanks to everyone over at [FontAwesome] (http://fontawesome.io/)
-Bootstrap theme by [Bootswatch] (http://bootswatch.com/)
+Thanks to everyone over at [FontAwesome](http://fontawesome.io/)
+Bootstrap theme by [Bootswatch](http://bootswatch.com/)
 
 ## Author
 
